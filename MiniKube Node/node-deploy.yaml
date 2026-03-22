@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ labels:
+   release: beta
+   type: poc
+ name: nodeapi-deployment
+spec:
+ replicas: 2
+ selector:
+   matchLabels:
+     type: poc
+ template:
+   metadata:
+     labels:
+       release: beta
+       type: poc
+     name: nodeapi-nodeapi
+   spec:
+     containers:
+      - image: "heangmapanha/admin:latest"
+        name: admin-container
+        ports:
+          - containerPort: 5002
